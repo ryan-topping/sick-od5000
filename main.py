@@ -17,11 +17,11 @@ def read_data(sensor: Sensor, sock: socket.socket) -> bytes:
     response, _ = sock.recvfrom(buffer)
     return response
 
-def unpack(data: bytes):
+def unpack(data: bytes) -> int:
     _, value = struct.unpack(">HI", data)
     return value
 
-def main():
+def main() -> None:
     sensor1 = Sensor("192.168.1.100", 5011)
     sensor2 = Sensor("192.168.1.101", 5011)
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -53,7 +53,6 @@ def main():
     animation = matplotlib.animation.FuncAnimation(figure, update, interval=50)
 
     matplotlib.pyplot.show()
-
 
 if __name__ == "__main__":
     main()
